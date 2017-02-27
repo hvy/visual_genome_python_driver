@@ -1,7 +1,8 @@
-from models import Image, Object, Attribute, Relationship
-from models import Region, Graph, QA, QAObject, Synset
-import httplib
+import http.client
 import json
+
+from .models import Image, Object, Attribute, Relationship
+from .models import Region, Graph, QA, QAObject, Synset
 
 """
 Get the local directory where the Visual Genome data is locally stored.
@@ -15,7 +16,7 @@ def GetDataDir():
 Helper Method used to get all data from request string.
 """
 def RetrieveData(request):
-  connection = httplib.HTTPSConnection("visualgenome.org", '443')
+  connection = httplib.client.HTTPSConnection("visualgenome.org", '443')
   connection.request("GET", request)
   response = connection.getresponse()
   jsonString = response.read()

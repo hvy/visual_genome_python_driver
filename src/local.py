@@ -1,8 +1,7 @@
-from models import Image, Object, Attribute, Relationship
-from models import Region, Graph, QA, QAObject, Synset
-import httplib
+from .models import Image, Object, Attribute, Relationship
+from .models import Region, Graph, QA, QAObject, Synset
 import json
-import utils
+from . import utils
 import os, gc
 
 """
@@ -159,7 +158,7 @@ def ParseGraphLocal(data, image):
     else:
       count_miss += 1
     if count_miss % 10000 == 1:
-      print 'Misses: ', count_miss
+      print('Misses: ', count_miss)
       # print 'SKIPPING   s: {}, v: {}, o: {}'.format(rel['subject_id'], rel['relationship_id'], rel['object_id'])
   return Graph(image, objects, relationships, [])
 
